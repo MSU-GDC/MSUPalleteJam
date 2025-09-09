@@ -73,8 +73,10 @@ public class Player_Controller : MonoBehaviour
             coyoteTimer -= Time.deltaTime;
 
         // Sets Jump Velocity based on jump height and gravity scale. In update so that it can be changed in real-time for testing/mechanics. -DC
+
         float gravity = -9.81f * _gravityScale;
         _jumpVelocity = Mathf.Sqrt(2f * Mathf.Abs(gravity) * _jumpHeight);
+    
     }
 
     private void FixedUpdate()
@@ -89,6 +91,8 @@ public class Player_Controller : MonoBehaviour
         // regarding the player moving slightly on its own sometimes.
         // It's totally still happening, but at least now we can see when it happens in the logs.
         // Might wanna take a look at it if you have time. -DC
+
+        // 
 
         Vector2 inputVector = _moveAction.ReadValue<Vector2>();
 
@@ -143,17 +147,22 @@ public class Player_Controller : MonoBehaviour
 
     private void ApplyCustomGravity() //Heres the shitty custom gravity function I made, it does pretty much what it should,
                                       //but I know you wanted to use a real math function for it, so feel free to replace it. -DC
+                                      //
+                                      // Changed it so the player accelerates due to gravity instead of just applying a raw force - JF
     {
         if (!_isGrounded)
         {
             float gravity = -9.81f * _gravityScale;
-            _rb.AddForce(new Vector2(0, gravity), ForceMode2D.Force);
+
+            _rb.linearVelocityY += gravity * Time.fixedDeltaTime; 
         }
     }
 
     private void OnDrawGizmos()
     {
+        // lets make it a wire cube so its easier to pick out against the background
+        Gizmos.color = Color.green;
         if (groundCast != null)
-            Gizmos.DrawCube(groundCast.position + Vector3.down * rcDist, new Vector2(2, 1));
+            Gizmos.DrawWireCube(groundCast.position + Vector3.down * rcDist, new Vector2(2, 1));
     }
 }
