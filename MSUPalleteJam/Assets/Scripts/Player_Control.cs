@@ -114,11 +114,14 @@ public class Player_Controller : MonoBehaviour
         // Allow jump if grounded or within coyote time
         if (_isGrounded || coyoteTimer > 0f)
             _jumpQueued = true;
+        
     }
 
     private void MovePlayer()
     {
         // Horizontal movement with acceleration/deceleration
+
+        // Could you explain how this bit of code works? Im used to directly modifying the velocity instead of using rb.addforce for movement - JF
         float targetSpeed = _movementDirection.x * _moveSpeed;
         float speedDiff = targetSpeed - _rb.linearVelocity.x;
         float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? _acceleration : _deceleration;
@@ -137,11 +140,15 @@ public class Player_Controller : MonoBehaviour
         }
     }
 
+
+
+    
+
     private void CheckGrounded()
     {
         //Here's the BoxCast ground check, it works pretty well so far, but could totally be tweaked. -DC
 
-        RaycastHit2D boxResult = Physics2D.BoxCast(gameObject.transform.position, new Vector2(2,1), 0f, Vector2.down, rcDist, groundMask);
+        RaycastHit2D boxResult = Physics2D.BoxCast(gameObject.transform.position, _rectExtents, 0f, Vector2.down, rcDist, groundMask);
         _isGrounded = boxResult.collider != null;
     }
 
@@ -163,6 +170,6 @@ public class Player_Controller : MonoBehaviour
         // lets make it a wire cube so its easier to pick out against the background
         Gizmos.color = Color.green;
         if (groundCast != null)
-            Gizmos.DrawWireCube(groundCast.position + Vector3.down * rcDist, new Vector2(2, 1));
+            Gizmos.DrawWireCube(groundCast.position + Vector3.down * rcDist, _rectExtents);
     }
 }
