@@ -31,6 +31,7 @@ public class Player_Controller : MonoBehaviour
     [SerializeField] private bool _isJump;
     [SerializeField] private bool _isGrounded;
     [SerializeField] private float _jumpVelocity;
+    [SerializeField] private int _gravDirection = 1;
 
     private InputAction _moveAction;
     private InputAction _jumpAction;
@@ -75,7 +76,7 @@ public class Player_Controller : MonoBehaviour
         // Sets Jump Velocity based on jump height and gravity scale. In update so that it can be changed in real-time for testing/mechanics. -DC
 
         float gravity = -9.81f * _gravityScale;
-        _jumpVelocity = Mathf.Sqrt(2f * Mathf.Abs(gravity) * _jumpHeight);
+        _jumpVelocity = Mathf.Sqrt(2f * Mathf.Abs(gravity) * _jumpHeight) * _gravDirection;
     
     }
 
@@ -148,7 +149,7 @@ public class Player_Controller : MonoBehaviour
     {
         //Here's the BoxCast ground check, it works pretty well so far, but could totally be tweaked. -DC
 
-        RaycastHit2D boxResult = Physics2D.BoxCast(gameObject.transform.position, _rectExtents, 0f, Vector2.down, rcDist, groundMask);
+        RaycastHit2D boxResult = Physics2D.BoxCast(gameObject.transform.position, _rectExtents, 0f, Vector2.down * _gravDirection, rcDist, groundMask);
         _isGrounded = boxResult.collider != null;
     }
 
@@ -159,10 +160,15 @@ public class Player_Controller : MonoBehaviour
     {
         if (!_isGrounded)
         {
-            float gravity = -9.81f * _gravityScale;
+            float gravity = -9.81f * _gravityScale * _gravDirection;
 
             _rb.linearVelocityY += gravity * Time.fixedDeltaTime; 
         }
+    }
+
+    public void SetGravityDirection(int direction)
+    {
+        this._gravDirection = direction;
     }
 
     private void OnDrawGizmos()

@@ -819,7 +819,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1070289277}
   - component: {fileID: 1070289276}
+  - component: {fileID: 1070289280}
   - component: {fileID: 1070289278}
+  - component: {fileID: 1070289279}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -869,6 +871,7 @@ Transform:
   m_Children:
   - {fileID: 1124541976}
   - {fileID: 614695163}
+  - {fileID: 2017944707}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1070289278
@@ -901,6 +904,37 @@ MonoBehaviour:
   _isJump: 0
   _isGrounded: 0
   _jumpVelocity: 0
+  _gravDirection: 1
+--- !u!114 &1070289279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070289275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da80bac4350da524fb18fd7b94da475e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _controls: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  _abilityList:
+  - {fileID: 2017944706}
+  _preUnlockedAbilities: 10000000
+  _equippedAbility: {fileID: 0}
+--- !u!114 &1070289280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070289275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a4b440f3dd463f4691327079cb1b9bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Controller: {fileID: 1070289278}
 --- !u!1 &1124541975
 GameObject:
   m_ObjectHideFlags: 0
@@ -1159,6 +1193,54 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &2017944705
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2017944707}
+  - component: {fileID: 2017944706}
+  m_Layer: 0
+  m_Name: GravFlipAbility
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2017944706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2017944705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbeb8504079dd9344bb3562e61b33046, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _abilityData:
+    AbilityID: 16
+    AssociatedColor: {r: 0.43137255, g: 0.72156864, b: 0.65882355, a: 0}
+    AbilityName: Gravity Flip
+--- !u!4 &2017944707
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2017944705}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1070289277}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2073707939
 GameObject:
   m_ObjectHideFlags: 0
