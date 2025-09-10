@@ -176,6 +176,6 @@ public class Player_Controller : MonoBehaviour
         // lets make it a wire cube so its easier to pick out against the background
         Gizmos.color = Color.green;
         if (groundCast != null)
-            Gizmos.DrawWireCube(groundCast.position + Vector3.down * rcDist, _rectExtents);
+            Gizmos.DrawWireCube(groundCast.position + (_gravDirection * rcDist * Vector3.down), _rectExtents);
     }
 }

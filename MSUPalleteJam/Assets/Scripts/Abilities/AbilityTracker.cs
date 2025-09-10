@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 
@@ -12,7 +13,8 @@ using UnityEngine.InputSystem;
 /// Also exposes callback servers relating to the adding and switching of abilities.
 /// Also responsible for using said abilities.
 /// 
-/// 
+/// TODO:
+/// - Add Ability Selection
 /// </summary>
 public class AbilityTracker : MonoBehaviour
 {
@@ -26,10 +28,14 @@ public class AbilityTracker : MonoBehaviour
 
     public static AbilityCallback AbilitySwitchCallback; // callback called whenever abilities are switched
     public static AbilityCallback AbilityAddedCallback;  // callback called whenever a new ability is added
+    
+    public UnityEvent OnAbilitySwitch;
+
 
     [Header("Settings / References")]
     [SerializeField] private InputActionAsset _controls;
     [SerializeField] private List<Ability> _abilityList;
+
 
 
     [Header("Debug / Testing")]
@@ -141,6 +147,7 @@ public class AbilityTracker : MonoBehaviour
         _equippedAbility = _abilityDatabase[abilityID]; 
 
         if(AbilitySwitchCallback != null) AbilitySwitchCallback.Invoke();
+        if (OnAbilitySwitch != null) OnAbilitySwitch.Invoke();
 
         return true;
     }
