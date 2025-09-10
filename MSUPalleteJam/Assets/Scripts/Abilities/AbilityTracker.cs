@@ -93,15 +93,58 @@ public class AbilityTracker : MonoBehaviour
 
     private void Update()
     {
-        if (_useAbilityAction.WasPressedThisFrame() && _equippedAbility != null)
+
+        
+
+        if (CanExecuteAbility())
         {
             _equippedAbility.Execute();
         }
 
-        if(_useAbilityAction.WasReleasedThisFrame() && _equippedAbility != null)
+        if(CanCancelAbility())
         {
             _equippedAbility.Cancel();
         }
+    }
+
+    private bool CanExecuteAbility()
+    {
+
+        bool execute; 
+        if (_equippedAbility == null) return false;
+
+        if (_equippedAbility.IsHoldAbility())
+        {
+            execute = _useAbilityAction.IsPressed(); 
+        }
+        else
+        {
+            execute = _useAbilityAction.WasPressedThisFrame();
+        }
+
+        return execute;
+    }
+
+    private bool CanCancelAbility()
+    {
+        if (_equippedAbility == null) return false;
+
+        if (_equippedAbility.IsHoldAbility() && _useAbilityAction.IsPressed())
+        {
+            return false;
+        }
+        else if (_equippedAbility.IsHoldAbility())
+        {
+            return true;
+        }
+        else if (_equippedAbility.IsHoldAbility() == false && _useAbilityAction.WasReleasedThisFrame())   // there might be a bug here where the player is not executing
+        {                                                                                                 // any ability but logically the game still thinks that they are
+            return true;
+        }
+        else return false; 
+        
+
+    
     }
 
 

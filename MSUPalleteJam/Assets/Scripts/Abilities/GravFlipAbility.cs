@@ -23,4 +23,9 @@ public class GravFlipAbility : Ability
     {
         return _abilityData;
     }
+
+    public override bool IsHoldAbility()
+    {
+        return true;
+    }
 }

@@ -17,6 +17,8 @@ public class Player_Controller : MonoBehaviour
     [SerializeField] private float _acceleration = 20.0f;
     [SerializeField] private float _deceleration = 30.0f;
 
+    [SerializeField] private float _dashDistance = 3.0f;
+
     [Header("Ground Check Settings")]
     [SerializeField] private Vector2 _rectExtents = Vector2.one;
     [SerializeField] private Transform groundCast;
@@ -36,6 +38,7 @@ public class Player_Controller : MonoBehaviour
     private InputAction _moveAction;
     private InputAction _jumpAction;
     private bool _jumpQueued = false;
+    [SerializeField] private bool _dashQueued = false;
     private float coyoteTimer = 0f;
 
     private void OnEnable()
@@ -122,7 +125,29 @@ public class Player_Controller : MonoBehaviour
     {
         // Horizontal movement with acceleration/deceleration
 
+        if (_dashQueued)
+        {
+            //TODO: Find a way to get the player to dash x units with rb.addforce - JF
+
+            float desiredDir = _movementDirection.x != 0 ? _movementDirection.x : 1f;
+
+            float desiredSpeed = desiredDir * _moveSpeed; 
+            float diff = desiredSpeed - _rb.linearVelocity.x;
+
+            float dv = diff * diff;
+
+            float force = dv / (2f * _dashDistance);
+
+            Debug.Log($"Applying impulse force {force} to player");
+            _rb.AddForce(Vector2.right * force, ForceMode2D.Impulse);
+
+            _dashQueued = false;
+        }
+
+
+
         // Could you explain how this bit of code works? Im used to directly modifying the velocity instead of using rb.addforce for movement - JF
+        // NVM Found it https://www.youtube.com/watch?v=KbtcEVCM7bw&t=111s thats pretty cool -JF
         float targetSpeed = _movementDirection.x * _moveSpeed;
         float speedDiff = targetSpeed - _rb.linearVelocity.x;
         float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? _acceleration : _deceleration;
@@ -171,11 +196,23 @@ public class Player_Controller : MonoBehaviour
         this._gravDirection = direction;
     }
 
+    public void QueueDash()
+    {
+        _dashQueued = true;
+    }
+
     private void OnDrawGizmos()
     {
         // lets make it a wire cube so its easier to pick out against the background
         Gizmos.color = Color.green;
         if (groundCast != null)
             Gizmos.DrawWireCube(groundCast.position + (_gravDirection * rcDist * Vector3.down), _rectExtents);
+
+        Gizmos.color = Color.yellow;
+
+        Gizmos.DrawWireCube(transform.position + Vector3.right * (_movementDirection.x != 0f ? _movementDirection.x : 1f) * _dashDistance, Vector3.one); 
+    
+    
     }
+
 }
