@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -48,6 +49,9 @@ public class AbilityTracker : MonoBehaviour
 
     private InputAction _useAbilityAction;
 
+
+    [SerializeField] private bool _abilityToggle;  
+
     private void Awake()
     {
         if(Singleton != this && Singleton != null)
@@ -94,40 +98,65 @@ public class AbilityTracker : MonoBehaviour
     private void Update()
     {
 
-        
-
         if (CanExecuteAbility())
         {
             _equippedAbility.Execute();
         }
-
-        if(CanCancelAbility())
+        if (CanCancelAbility())
         {
             _equippedAbility.Cancel();
         }
+        
+
+        
+    }
+
+    private IEnumerator ToggleRoutine()
+    {
+        yield return new WaitUntil(() => _useAbilityAction.WasReleasedThisFrame());
+        yield return new WaitForSecondsRealtime(0.125f); 
+        yield return new WaitUntil(() =>  _useAbilityAction.WasPressedThisFrame());
+
+        yield return new WaitUntil(() => _equippedAbility.CanToggle());
+        _abilityToggle = false;
     }
 
     private bool CanExecuteAbility()
     {
 
-        bool execute; 
+        bool execute = false; 
         if (_equippedAbility == null) return false;
 
         if (_equippedAbility.IsHoldAbility())
         {
-            execute = _useAbilityAction.IsPressed(); 
+            execute = _useAbilityAction.IsPressed();
         }
-        else
+        else if (_equippedAbility.IsToggleAbility() && !_abilityToggle && _equippedAbility.CanToggle())
+        {
+            execute = _useAbilityAction.WasPressedThisFrame();
+            _abilityToggle = execute;
+
+            if(_abilityToggle) StartCoroutine(ToggleRoutine());
+        }
+        else if(_equippedAbility.IsHoldAbility() && !_equippedAbility.IsToggleAbility())
         {
             execute = _useAbilityAction.WasPressedThisFrame();
         }
 
-        return execute;
+
+        return (_equippedAbility.IsToggleAbility() && _abilityToggle) || execute;
     }
 
     private bool CanCancelAbility()
     {
         if (_equippedAbility == null) return false;
+
+        if (_equippedAbility.IsToggleAbility() && !_abilityToggle)
+        {
+            return true; 
+        }
+
+
 
         if (_equippedAbility.IsHoldAbility() && _useAbilityAction.IsPressed())
         {
@@ -141,7 +170,10 @@ public class AbilityTracker : MonoBehaviour
         {                                                                                                 // any ability but logically the game still thinks that they are
             return true;
         }
-        else return false; 
+        
+        
+        
+        return false; 
         
 
     

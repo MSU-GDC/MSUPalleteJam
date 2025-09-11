@@ -24,8 +24,13 @@ public class GravFlipAbility : Ability
         return _abilityData;
     }
 
-    public override bool IsHoldAbility()
+    public override bool IsToggleAbility()
     {
         return true;
+    }
+
+    public override bool CanToggle()
+    {
+        return Player.Singleton.Controller.IsGrounded() && Player.Singleton.Controller.IsPlayerYMovement() == false;
     }
 }

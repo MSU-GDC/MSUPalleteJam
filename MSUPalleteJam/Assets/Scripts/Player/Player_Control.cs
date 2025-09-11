@@ -38,8 +38,12 @@ public class Player_Controller : MonoBehaviour
     private InputAction _moveAction;
     private InputAction _jumpAction;
     private bool _jumpQueued = false;
-    [SerializeField] private bool _dashQueued = false;
+    [SerializeField] private bool _dashQueued = false;    
+    
     private float coyoteTimer = 0f;
+
+
+
 
     private void OnEnable()
     {
@@ -194,6 +198,17 @@ public class Player_Controller : MonoBehaviour
     public void SetGravityDirection(int direction)
     {
         this._gravDirection = direction;
+    }
+
+
+    public bool IsPlayerYMovement()
+    {
+        return _rb.linearVelocityY != 0.0f;
+    }
+
+    public bool IsGrounded()
+    {
+        return _isGrounded;
     }
 
     public void QueueDash()

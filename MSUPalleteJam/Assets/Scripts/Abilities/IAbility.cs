@@ -19,5 +19,9 @@ public abstract class Ability : MonoBehaviour
     public abstract AbilityData_t GetAbilityData(); 
 
     public virtual bool IsHoldAbility() { return false; }
+
+    public virtual bool IsToggleAbility() { return false; }
+
+    public virtual bool CanToggle() {  return false; }
 }
 
