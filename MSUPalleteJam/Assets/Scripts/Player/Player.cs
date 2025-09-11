@@ -8,6 +8,12 @@ public class Player : MonoBehaviour
     [Header("Player Scripts")]
     public Player_Controller Controller;
 
+    [Header("Global References")]
+    public Camera MainCamera;
+
+    public Transform ProjectileSpawnPt;
+
+
 
 
 
