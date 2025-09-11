@@ -16,6 +16,8 @@ public class RockThrowAbility : Ability
 
     [SerializeField] private float _chargeTimeSeconds = 1.5f;
 
+    [SerializeField] private bool _isCooldown;
+
 
     private float _cChargeTime; 
 
@@ -27,7 +29,11 @@ public class RockThrowAbility : Ability
     public override void Cancel()
     {
         // THROW DA ROCK
-
+        if (!_isCooldown && !_hasChargedRock)
+        {
+            _isCooldown = true;
+            Invoke(nameof(EndCooldown), _abilityData.CooldownTimeSeconds);
+        }
         if (!_hasChargedRock) return;
 
 
@@ -52,11 +58,15 @@ public class RockThrowAbility : Ability
         _cChargeTime = 0;
 
 
+
+
     }
 
     public override void Execute()
     {
         // CHARGE DA ROCK
+
+        if (_isCooldown) return; 
 
         _hasChargedRock = true;
 
@@ -92,4 +102,11 @@ public class RockThrowAbility : Ability
     {
         return true;
     }
+
+    public override bool IsCooldown()
+    {
+        return _isCooldown;
+    }
+
+    private void EndCooldown() => _isCooldown = false;
 }

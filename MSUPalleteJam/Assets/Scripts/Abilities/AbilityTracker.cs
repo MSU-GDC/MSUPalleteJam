@@ -48,6 +48,9 @@ public class AbilityTracker : MonoBehaviour
     private Dictionary<AbilityID_e, Ability> _abilityDatabase;
 
     private InputAction _useAbilityAction;
+    private InputAction _selectAbilityAction;
+
+    private int _abilityIndexSelected = 0; 
 
 
     private bool _abilityToggle;  
@@ -65,7 +68,13 @@ public class AbilityTracker : MonoBehaviour
         else Singleton = this;
 
 
-        _useAbilityAction = _controls.FindActionMap("Player").FindAction("UseAbility"); 
+        _useAbilityAction = _controls.FindActionMap("Player").FindAction("UseAbility");
+
+        _selectAbilityAction = _controls.FindActionMap("Player").FindAction("SelectAbility");
+
+
+        _selectAbilityAction.performed += SwitchAbility;
+        
 
 
     }
@@ -94,9 +103,38 @@ public class AbilityTracker : MonoBehaviour
     }
 
 
+    private void SwitchAbility(InputAction.CallbackContext ctx)
+    {
+        float value = ctx.ReadValue<float>();
+
+        Debug.Log($"selected ability {value}");
+
+
+        switch (value)
+        {
+            case 1:
+
+                EquipAbility(AbilityID_e.DASH);
+                break;
+            case 2:
+
+                EquipAbility(AbilityID_e.ROCKTHROW);
+                break;
+            case 3:
+
+                EquipAbility(AbilityID_e.GRAVFLIP);
+                break;
+            default:
+                Debug.LogWarning($"Warning, invalid key pressed with value {value}");
+                break; 
+        }
+    }
+
+
 
     private void Update()
     {
+        if (_equippedAbility == null || _equippedAbility.IsCooldown()) return; 
 
         if (CanExecuteAbility())
         {
@@ -113,11 +151,13 @@ public class AbilityTracker : MonoBehaviour
 
     private IEnumerator ToggleRoutine()
     {
+        Ability equipped = _equippedAbility;
+
         yield return new WaitUntil(() => _useAbilityAction.WasReleasedThisFrame());
         yield return new WaitForSecondsRealtime(0.125f); 
         yield return new WaitUntil(() =>  _useAbilityAction.WasPressedThisFrame());
 
-        yield return new WaitUntil(() => _equippedAbility.CanToggle());
+        yield return new WaitUntil(() => equipped.CanToggle());
         _abilityToggle = false;
     }
 
@@ -125,7 +165,6 @@ public class AbilityTracker : MonoBehaviour
     {
 
         bool execute = false; 
-        if (_equippedAbility == null) return false;
 
         if (_equippedAbility.IsHoldAbility())
         {
@@ -149,7 +188,7 @@ public class AbilityTracker : MonoBehaviour
 
     private bool CanCancelAbility()
     {
-        if (_equippedAbility == null) return false;
+
 
         if (_equippedAbility.IsToggleAbility() && !_abilityToggle)
         {
@@ -212,6 +251,7 @@ public class AbilityTracker : MonoBehaviour
 
     public bool EquipAbility(AbilityID_e abilityID)
     {
+
         if (!IsAbilityUnlocked(abilityID)) return false;
         if (!IsAbilityInDatabase(abilityID))
         {
@@ -219,11 +259,26 @@ public class AbilityTracker : MonoBehaviour
             return false;
         }
 
-        _equippedAbility = _abilityDatabase[abilityID]; 
+        if (_equippedAbility != null && _equippedAbility.GetAbilityData().AbilityID == abilityID) return false; 
+        //else if(_equippedAbility != null)
+        //{
+        //    if (_equippedAbility.IsToggleAbility())
+        //    {
+        //        _equippedAbility.CancelWithGrace();
+        //        _abilityToggle = false;
+        //    }
+        //    _equippedAbility.Cancel();  // cancel the previous ability
+
+        //}
+
+
+        _equippedAbility = _abilityDatabase[abilityID];
+
+        Debug.Log($"Equipped Ability {abilityID}");
 
         if(AbilitySwitchCallback != null) AbilitySwitchCallback.Invoke();
         if (OnAbilitySwitch != null) OnAbilitySwitch.Invoke();
-
+        
         return true;
     }
 

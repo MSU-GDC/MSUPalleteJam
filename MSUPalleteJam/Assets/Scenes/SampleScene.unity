@@ -1083,7 +1083,9 @@ MonoBehaviour:
   _controls: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   _abilityList:
   - {fileID: 1955242910}
-  _preUnlockedAbilities: 00100000
+  - {fileID: 2017944706}
+  - {fileID: 1422299261}
+  _preUnlockedAbilities: 001000001000000001000000
   _equippedAbility: {fileID: 0}
 --- !u!114 &1070289280
 MonoBehaviour:
@@ -1599,11 +1601,12 @@ MonoBehaviour:
     AbilityID: 4096
     AssociatedColor: {r: 0.45490196, g: 0.6392157, b: 0.20784314, a: 0}
     AbilityName: Rock Throw
-    CooldownTimeSeconds: 1.5
+    CooldownTimeSeconds: 0.5
   _rockPrefab: {fileID: 7935957318500463834, guid: c7cdd88de9688ba4f9efde051f2ae685, type: 3}
   _baseProjectileForce: 20
   _maxProjectileForce: 40
   _chargeTimeSeconds: 1.5
+  _isCooldown: 0
 --- !u!1 &2017944705
 GameObject:
   m_ObjectHideFlags: 0
@@ -1637,7 +1640,8 @@ MonoBehaviour:
     AbilityID: 16
     AssociatedColor: {r: 0.43137255, g: 0.72156864, b: 0.65882355, a: 0}
     AbilityName: Gravity Flip
-    CooldownTimeSeconds: 0
+    CooldownTimeSeconds: 0.125
+  _isCooldown: 0
 --- !u!4 &2017944707
 Transform:
   m_ObjectHideFlags: 0

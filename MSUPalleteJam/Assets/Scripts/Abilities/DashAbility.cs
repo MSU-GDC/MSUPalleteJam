@@ -42,5 +42,8 @@ public class DashAbility : Ability
         return false;
     }
 
-    
+    public override bool IsCooldown()
+    {
+        return _isCooldown;
+    }
 }
