@@ -50,9 +50,6 @@ public class AbilityTracker : MonoBehaviour
     private InputAction _useAbilityAction;
     private InputAction _selectAbilityAction;
 
-    private int _abilityIndexSelected = 0; 
-
-
     private bool _abilityToggle;  
 
     private void Awake()
