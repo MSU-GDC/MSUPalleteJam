@@ -974,7 +974,7 @@ MonoBehaviour:
   _moveSpeed: 16
   _acceleration: 50
   _deceleration: 50
-  _dashDistance: 3
+  _dashForceMult: 10
   _rectExtents: {x: 1.9, y: 1}
   groundCast: {fileID: 614695163}
   rcDist: 0.3
@@ -1482,6 +1482,8 @@ MonoBehaviour:
     AbilityID: 1
     AssociatedColor: {r: 0.7764706, g: 0.3137255, b: 0.3529412, a: 0}
     AbilityName: Dash
+    CooldownTimeSeconds: 1.5
+  _isCooldown: 0
 --- !u!1 &2017944705
 GameObject:
   m_ObjectHideFlags: 0
@@ -1515,6 +1517,7 @@ MonoBehaviour:
     AbilityID: 16
     AssociatedColor: {r: 0.43137255, g: 0.72156864, b: 0.65882355, a: 0}
     AbilityName: Gravity Flip
+    CooldownTimeSeconds: 0
 --- !u!4 &2017944707
 Transform:
   m_ObjectHideFlags: 0

@@ -50,7 +50,7 @@ public class AbilityTracker : MonoBehaviour
     private InputAction _useAbilityAction;
 
 
-    [SerializeField] private bool _abilityToggle;  
+    private bool _abilityToggle;  
 
     private void Awake()
     {
@@ -138,7 +138,7 @@ public class AbilityTracker : MonoBehaviour
 
             if(_abilityToggle) StartCoroutine(ToggleRoutine());
         }
-        else if(_equippedAbility.IsHoldAbility() && !_equippedAbility.IsToggleAbility())
+        else if(!_equippedAbility.IsHoldAbility() && !_equippedAbility.IsToggleAbility())
         {
             execute = _useAbilityAction.WasPressedThisFrame();
         }
@@ -249,7 +249,9 @@ public struct AbilityData_t
 {
     public AbilityID_e AbilityID;
     public Color AssociatedColor;
-    public string AbilityName; 
+    public string AbilityName;
+    public float CooldownTimeSeconds;
+
 }
 
 
