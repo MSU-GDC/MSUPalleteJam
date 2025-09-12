@@ -80,6 +80,7 @@ MonoBehaviour:
     AssociatedColor: {r: 0.93333334, g: 0.6117647, b: 0.3647059, a: 1}
     AbilityName: Dash
     CooldownTimeSeconds: 1.5
+    Icon: {fileID: 21300000, guid: 1a30518c17c9e1945b5e8c1875e92417, type: 3}
   _isCooldown: 0
 --- !u!1 &1786348723134338281
 GameObject:
@@ -295,6 +296,7 @@ MonoBehaviour:
     AssociatedColor: {r: 0.45490196, g: 0.6392157, b: 0.20784314, a: 1}
     AbilityName: Rock Throw
     CooldownTimeSeconds: 0.5
+    Icon: {fileID: 0}
   _rockPrefab: {fileID: 7935957318500463834, guid: c7cdd88de9688ba4f9efde051f2ae685, type: 3}
   _baseProjectileForce: 20
   _maxProjectileForce: 40
@@ -390,7 +392,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 509f67fad1375634c9911fc74ed5e886, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -534,6 +536,7 @@ MonoBehaviour:
     AssociatedColor: {r: 0.7764706, g: 0.3137255, b: 0.3529412, a: 1}
     AbilityName: Wallblast
     CooldownTimeSeconds: 1.5
+    Icon: {fileID: 21300000, guid: fcea02d5c8d922d4697278fdfd52128e, type: 3}
   _isCooldown: 0
   _bombPrefab: {fileID: 5091753231939456850, guid: 2a3a61499d839ec4fae71c4e1c4b9d8f, type: 3}
 --- !u!1 &8695985044475115538
@@ -585,4 +588,5 @@ MonoBehaviour:
     AssociatedColor: {r: 0.43137255, g: 0.72156864, b: 0.65882355, a: 1}
     AbilityName: Gravity Flip
     CooldownTimeSeconds: 0.125
+    Icon: {fileID: 0}
   _isCooldown: 0

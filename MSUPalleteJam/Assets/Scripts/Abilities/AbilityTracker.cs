@@ -286,6 +286,12 @@ public class AbilityTracker : MonoBehaviour
     {
         return _abilityDatabase.ContainsKey(abilityID);
     }
+
+
+    public Ability CurrentAbility()
+    {
+        return _equippedAbility; 
+    }
 }
 
 public enum AbilityID_e
@@ -306,6 +312,8 @@ public struct AbilityData_t
     public Color AssociatedColor;
     public string AbilityName;
     public float CooldownTimeSeconds;
+
+    public Sprite Icon;
 
 }
 
