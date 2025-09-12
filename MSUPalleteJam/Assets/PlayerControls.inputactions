@@ -473,6 +473,17 @@
                     "action": "SelectAbility",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ca95a1ab-cc06-4de5-9388-e4ccb9547cb2",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "Scale(factor=4)",
+                    "groups": "",
+                    "action": "SelectAbility",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

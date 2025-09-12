@@ -115,10 +115,13 @@ public class AbilityTracker : MonoBehaviour
                 break;
             case 2:
 
-                EquipAbility(AbilityID_e.ROCKTHROW);
+                EquipAbility(AbilityID_e.WALLBLAST);
                 break;
             case 3:
 
+                EquipAbility(AbilityID_e.ROCKTHROW);
+                break;
+            case 4:
                 EquipAbility(AbilityID_e.GRAVFLIP);
                 break;
             default:

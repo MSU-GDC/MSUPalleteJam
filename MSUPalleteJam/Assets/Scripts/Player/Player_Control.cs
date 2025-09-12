@@ -9,6 +9,7 @@ public class Player_Controller : MonoBehaviour
     [Header("References")]
     [SerializeField] private Rigidbody2D _rb;
     [SerializeField] private InputActionAsset _controls;
+    [SerializeField] private SpriteRenderer _playerSprite;
 
     [Header("Movement Settings")]
     [SerializeField] private float _jumpHeight = 2.0f;
@@ -41,6 +42,9 @@ public class Player_Controller : MonoBehaviour
     [SerializeField] private bool _dashQueued = false;    
     
     private float coyoteTimer = 0f;
+
+
+    private int _lastMovementDir = 1;
 
 
 
@@ -84,8 +88,11 @@ public class Player_Controller : MonoBehaviour
 
         float gravity = -9.81f * _gravityScale;
         _jumpVelocity = Mathf.Sqrt(2f * Mathf.Abs(gravity) * _jumpHeight) * _gravDirection;
-    
-    }
+
+
+        if (_lastMovementDir >= 0) _playerSprite.flipX = false;
+        else _playerSprite.flipX = true;
+    }            
 
     private void FixedUpdate()
     {
@@ -115,6 +122,9 @@ public class Player_Controller : MonoBehaviour
             Debug.LogWarning($"Nonzero X input detected: {inputVector.x}");
 
         _movementDirection = new Vector2(inputVector.x, 0f);
+
+
+        if (_movementDirection.x != 0) _lastMovementDir = (int)Mathf.Sign(_movementDirection.x);
     }
 
     private void OnJumpStarted(InputAction.CallbackContext ctx)
@@ -158,6 +168,7 @@ public class Player_Controller : MonoBehaviour
 
         _rb.AddForce(new Vector2(movement, 0f));
 
+
         // Jumping
         if (_jumpQueued && (coyoteTimer > 0f))
         {
@@ -197,6 +208,9 @@ public class Player_Controller : MonoBehaviour
     public void SetGravityDirection(int direction)
     {
         this._gravDirection = direction;
+
+        if (direction >= 0) _playerSprite.flipY = false;
+        else _playerSprite.flipY = true;
     }
 
 
