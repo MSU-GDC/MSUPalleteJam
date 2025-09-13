@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,6 +12,8 @@ public class Player_Controller : MonoBehaviour
     [SerializeField] private Rigidbody2D _rb;
     [SerializeField] private InputActionAsset _controls;
     [SerializeField] private SpriteRenderer _playerSprite;
+
+    [SerializeField] private Animator _animator; 
 
     [Header("Movement Settings")]
     [SerializeField] private float _jumpHeight = 2.0f;
@@ -46,7 +50,10 @@ public class Player_Controller : MonoBehaviour
 
     private int _lastMovementDir = 1;
 
-
+    void Awake()
+    {
+        StartCoroutine(this.AnimationWatcher()); 
+    }
 
 
     private void OnEnable()
@@ -92,6 +99,8 @@ public class Player_Controller : MonoBehaviour
 
         if (_lastMovementDir >= 0) _playerSprite.flipX = false;
         else _playerSprite.flipX = true;
+
+        //UpdateCurrentAnimation();
     }            
 
     private void FixedUpdate()
@@ -100,7 +109,53 @@ public class Player_Controller : MonoBehaviour
         MovePlayer();
     }
 
-    private void QueryPlayerInput() 
+
+
+
+    private IEnumerator AnimationWatcher()
+    {
+        while (true)
+        {
+            if (_jumpQueued)
+            {
+                _animator.ResetTrigger("Idle"); 
+
+                _animator.SetTrigger("Jump");
+                yield return new WaitForSecondsRealtime(0.125f);
+                yield return new WaitUntil(() => _isGrounded);
+                _animator.ResetTrigger("Jump");
+
+            }
+
+            if (!_isGrounded && !_jumpQueued)
+            {
+                _animator.ResetTrigger("Idle"); 
+
+                _animator.SetTrigger("Fall");
+                yield return new WaitUntil(() => _isGrounded);
+                _animator.ResetTrigger("Fall");
+
+            }
+
+            if (Mathf.Abs(_rb.linearVelocityX) > .2)
+            {
+                _animator.ResetTrigger("Idle"); 
+
+                _animator.SetTrigger("Run");
+
+                yield return new WaitUntil(() => Mathf.Abs(_rb.linearVelocityX) <= .2);
+                _animator.ResetTrigger("Run");
+
+            }
+
+
+            _animator.SetTrigger("Idle"); 
+            
+            yield return new WaitForEndOfFrame(); 
+        }
+    }
+
+    private void QueryPlayerInput()
     {
         //John, I tweaked with the player input a bit to add a deadzone and log warnings for nonzero inputs cause we were getting some weird behavior
         // regarding the player moving slightly on its own sometimes.
