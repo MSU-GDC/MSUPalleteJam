@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 40ca0e20d1aed5d4a82a99412a3e1624
+guid: d7fa4b771f3cec4bb8d41b6e11462bc3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 202564162477837040
-    second: Color Change Flower_0
+      213: -3461781303140439829
+    second: Cave_Dirt_Tile_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Color Change Flower_0
+      name: Cave_Dirt_Tile_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0fa47b45807afc200800000000000000
-      internalID: 202564162477837040
+      spriteID: be8a9300f3845ffc0800000000000000
+      internalID: -3461781303140439829
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Color Change Flower_0: 202564162477837040
+      Cave_Dirt_Tile_0: -3461781303140439829
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -159,7 +159,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 222775019229871854, guid: 39a85865ab9b48f488e61327ba97c279, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -319,7 +319,7 @@ MonoBehaviour:
     AssociatedColor: {r: 0.45490196, g: 0.6392157, b: 0.20784314, a: 1}
     AbilityName: Rock Throw
     CooldownTimeSeconds: 0.5
-    Icon: {fileID: 0}
+    Icon: {fileID: 4861451335079750334, guid: be346ee42aaa58431a3e488a01ed23ef, type: 3}
   _rockPrefab: {fileID: 7935957318500463834, guid: c7cdd88de9688ba4f9efde051f2ae685, type: 3}
   _baseProjectileForce: 20
   _maxProjectileForce: 40
@@ -441,6 +441,7 @@ MonoBehaviour:
   Controller: {fileID: 3877010132924661900}
   MainCamera: {fileID: 0}
   ProjectileSpawnPt: {fileID: 3525808664480865030}
+  PlayerRigidbody: {fileID: 8174837101850187180}
 --- !u!114 &3877010132924661900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -509,6 +510,7 @@ MonoBehaviour:
   - {fileID: 3812590004535670571}
   - {fileID: 198915466036610093}
   - {fileID: 2972854588488500658}
+  _animator: {fileID: 129663633903481293}
   _preUnlockedAbilities: 00100000000100001000000001000000
   _equippedAbility: {fileID: 0}
 --- !u!1 &7344980861479161227

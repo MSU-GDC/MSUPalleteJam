@@ -36,6 +36,7 @@ public class AbilityTracker : MonoBehaviour
     [Header("Settings / References")]
     [SerializeField] private InputActionAsset _controls;
     [SerializeField] private List<Ability> _abilityList;
+    [SerializeField] private Animator _animator;
 
 
 
@@ -76,6 +77,20 @@ public class AbilityTracker : MonoBehaviour
 
     }
 
+    private IEnumerator AnimatorWatcher()
+    {
+        while (true)
+        {
+            if (CanExecuteAbility())
+            {
+                _animator.SetTrigger("IsAbility");
+                yield return new WaitUntil(() => CanCancelAbility());
+                _animator.ResetTrigger("IsAbility");
+            }
+            yield return new WaitForEndOfFrame(); 
+        }
+    }
+
 
     private void Start()
     {
@@ -90,10 +105,10 @@ public class AbilityTracker : MonoBehaviour
 
 #if UNITY_EDITOR
         if (_preUnlockedAbilities == null || _preUnlockedAbilities.Count == 0) return;
-        foreach(AbilityID_e ability in _preUnlockedAbilities)
+        foreach (AbilityID_e ability in _preUnlockedAbilities)
         {
             Debug.Log($"Pre-Unlocking ability: {ability}");
-            UnlockAbility(ability); 
+            UnlockAbility(ability);
         }
 
 #endif // UNITY_EDITOR

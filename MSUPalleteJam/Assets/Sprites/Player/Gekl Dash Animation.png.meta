@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: 40ca0e20d1aed5d4a82a99412a3e1624
+guid: 35b809e5cc81ad7c4896021ecedf09cb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 202564162477837040
-    second: Color Change Flower_0
+      213: -6125550899800544127
+    second: Gekl Dash Animation_0
+  - first:
+      213: -7065643431602483170
+    second: Gekl Dash Animation_1
+  - first:
+      213: -5856093862293043681
+    second: Gekl Dash Animation_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +52,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -113,12 +119,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Color Change Flower_0
+      name: Gekl Dash Animation_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 8
+        y: 16
+        width: 16
         height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -128,8 +134,118 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0fa47b45807afc200800000000000000
-      internalID: 202564162477837040
+      spriteID: 18c60d349ebadfaa0800000000000000
+      internalID: -6125550899800544127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gekl Dash Animation_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 16
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1013cdfbbac1fd90800000000000000
+      internalID: -7065643431602483170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gekl Dash Animation_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 8
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f168daeb8a9fabea0800000000000000
+      internalID: -5856093862293043681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gekl Dash Animation_3
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 8
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c582f959a2dd268938d31ec6ff6c7718
+      internalID: 1908963478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gekl Dash Animation_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 543c6cdea58d3c3648ef9a600d086d93
+      internalID: -1806815857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gekl Dash Animation_5
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 440b1d2ec45adaf93a73bb6d4adf6eb5
+      internalID: -917196261
       vertices: []
       indices: 
       edges: []
@@ -138,7 +254,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: fbdcc57759890abe8aef0d5f31f3c9ed
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +264,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Color Change Flower_0: 202564162477837040
+      Gekl Dash Animation_0: -6125550899800544127
+      Gekl Dash Animation_1: -7065643431602483170
+      Gekl Dash Animation_2: -5856093862293043681
+      Gekl Dash Animation_3: 1908963478
+      Gekl Dash Animation_4: -1806815857
+      Gekl Dash Animation_5: -917196261
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

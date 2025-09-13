@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 40ca0e20d1aed5d4a82a99412a3e1624
+guid: c36f1e551a3d425e695050a70eceebd2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 202564162477837040
-    second: Color Change Flower_0
+      213: 7249655851519383820
+    second: Jungle_Tree_1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Color Change Flower_0
+      name: Jungle_Tree_1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 8
-        height: 8
+        width: 16
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0fa47b45807afc200800000000000000
-      internalID: 202564162477837040
+      spriteID: c0915ad2693fb9460800000000000000
+      internalID: 7249655851519383820
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Color Change Flower_0: 202564162477837040
+      Jungle_Tree_1_0: 7249655851519383820
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

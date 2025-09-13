@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
 
     public Transform ProjectileSpawnPt;
 
+    public Rigidbody2D PlayerRigidbody; 
+
 
 
 
@@ -24,7 +26,7 @@ public class Player : MonoBehaviour
             Debug.LogError("ERROR!!! MULTIPLE INSTANCES OF PLAYER.CS DETECTED, DEACTIVATING MOST RECENT INSTANCE!");
             gameObject.SetActive(false);
         }
-        else Singleton = this; 
+        else Singleton = this;
 
 
     }
