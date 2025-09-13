@@ -233,7 +233,10 @@ public class AbilityTracker : MonoBehaviour
     
     }
 
-
+    public void UnlockAbility(int abilityID)
+    {
+        UnlockAbility((AbilityID_e)abilityID);
+    }
     public void UnlockAbility(AbilityID_e abilityID)
     {
         if (IsAbilityUnlocked(abilityID)) return; 
