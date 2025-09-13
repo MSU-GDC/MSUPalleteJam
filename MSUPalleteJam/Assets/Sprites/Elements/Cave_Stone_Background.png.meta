@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 428a210b7c738e7f49b2432e7b075092
+guid: b8e18cf7af352f9da8eea191ebc16821
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2979432199462224140
-    second: Pallet_Jam_Button_0
+      213: -878397402418958393
+    second: Cave_Stone_Background_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Pallet_Jam_Button_0
+      name: Cave_Stone_Background_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c018e49bcc1195920800000000000000
-      internalID: 2979432199462224140
+      spriteID: 7cf2139673e4fc3f0800000000000000
+      internalID: -878397402418958393
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Pallet_Jam_Button_0: 2979432199462224140
+      Cave_Stone_Background_0: -878397402418958393
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
