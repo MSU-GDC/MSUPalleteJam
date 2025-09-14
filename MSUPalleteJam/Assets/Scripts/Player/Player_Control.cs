@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEditor.Animations;
+using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -116,36 +117,46 @@ public class Player_Controller : MonoBehaviour
     {
         while (true)
         {
-            if (_jumpQueued)
+            if (_rb.linearVelocityY > .2 || _jumpQueued)
             {
                 _animator.ResetTrigger("Idle"); 
+                _animator.ResetTrigger("Run");
 
                 _animator.SetTrigger("Jump");
                 yield return new WaitForSecondsRealtime(0.125f);
-                yield return new WaitUntil(() => _isGrounded);
+                yield return new WaitUntil(() => _isGrounded || Mathf.Abs(_rb.linearVelocityX) > 16.2);
                 _animator.ResetTrigger("Jump");
 
             }
 
             if (!_isGrounded && !_jumpQueued)
             {
-                _animator.ResetTrigger("Idle"); 
+                _animator.ResetTrigger("Idle");
 
                 _animator.SetTrigger("Fall");
-                yield return new WaitUntil(() => _isGrounded);
+                yield return new WaitUntil(() => _isGrounded || Mathf.Abs(_rb.linearVelocityX) > 16.2);
                 _animator.ResetTrigger("Fall");
 
             }
 
-            if (Mathf.Abs(_rb.linearVelocityX) > .2)
+            if (Mathf.Abs(_rb.linearVelocityX) > .2 && Mathf.Abs(_rb.linearVelocityX) < 16.2)
             {
-                _animator.ResetTrigger("Idle"); 
-
+                _animator.ResetTrigger("Idle");
                 _animator.SetTrigger("Run");
 
-                yield return new WaitUntil(() => Mathf.Abs(_rb.linearVelocityX) <= .2);
+                yield return new WaitUntil(() => Mathf.Abs(_rb.linearVelocityX) <= .2 || Mathf.Abs(_rb.linearVelocityY) > .2f || Mathf.Abs(_rb.linearVelocityX) > 16.2);
                 _animator.ResetTrigger("Run");
 
+            }
+
+            if (Mathf.Abs(_rb.linearVelocityX) > 6.2)
+            {
+                _animator.ResetTrigger("Idle");
+                _animator.SetTrigger("IsAbility");
+
+                yield return new WaitForSecondsRealtime(0.125f);
+                yield return new WaitUntil(() => Mathf.Abs(_rb.linearVelocityX) <= 16.2);
+                _animator.ResetTrigger("IsAbility");
             }
 
 
