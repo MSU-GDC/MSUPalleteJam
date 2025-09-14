@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class PlayerSoundController : MonoBehaviour
 {
-    [SerializeField] private AudioSource _movementAudioSource;
+    [SerializeField] private AudioSource _movementAudioSourcePrimary;
+    [SerializeField] private AudioSource _movementAudioSourceSecondary;
 
     [SerializeField] private List<AudioClip> _clips;
     [SerializeField] private List<SoundID_e> _associatedIds;
@@ -11,7 +12,8 @@ public class PlayerSoundController : MonoBehaviour
 
     private Dictionary<SoundID_e, AudioClip> _soundDatabase;
 
-    private SoundID_e _cSoundId; 
+    private SoundID_e _cSoundIdPrimary;
+    private SoundID_e _cSoundIdSecondary;
 
     private void Awake()
     {
@@ -26,24 +28,44 @@ public class PlayerSoundController : MonoBehaviour
 
 
 
-    public void PlayMovementSound(SoundID_e soundID, bool loop)
+    public void PlayMovementSoundPrimary(SoundID_e soundID, bool loop, bool repeat = true)
     {
-        if (_cSoundId == soundID && loop == _movementAudioSource.loop) return;
+        if (repeat == false && _cSoundIdPrimary == soundID && loop == _movementAudioSourcePrimary.loop) return;
         else
         {
-            _movementAudioSource.Stop();
-            _movementAudioSource.clip = _soundDatabase[soundID];
-            _movementAudioSource.loop = loop;
-            _movementAudioSource.Play(); 
+            _movementAudioSourcePrimary.Stop();
+            _movementAudioSourcePrimary.clip = _soundDatabase[soundID];
+            _movementAudioSourcePrimary.loop = loop;
+            _movementAudioSourcePrimary.Play(); 
 
-            _cSoundId = soundID;
+            _cSoundIdPrimary = soundID;
         }
     }
 
-    public void StopMovementSound()
+    public void PlayMovementSoundSecondary(SoundID_e soundID, bool loop, bool repeat = true)
     {
-        _movementAudioSource.Stop();
-        _cSoundId = SoundID_e.None; 
+        if (repeat == false && _cSoundIdSecondary == soundID && loop == _movementAudioSourceSecondary.loop) return;
+        else
+        {
+            _movementAudioSourceSecondary.Stop();
+            _movementAudioSourceSecondary.clip = _soundDatabase[soundID];
+            _movementAudioSourceSecondary.loop = loop;
+            _movementAudioSourceSecondary.Play();
+
+            _cSoundIdSecondary = soundID;
+        }
+    }
+
+
+    public void StopMovementSoundPrimary()
+    {
+        _movementAudioSourcePrimary.Stop();
+        _cSoundIdPrimary = SoundID_e.None; 
+    }
+    public void StopMovementSoundSecondary()
+    {
+        _movementAudioSourceSecondary.Stop();
+        _cSoundIdSecondary = SoundID_e.None;
     }
 
 }

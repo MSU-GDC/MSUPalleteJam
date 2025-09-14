@@ -44,7 +44,9 @@ public class Player_Controller : MonoBehaviour
     private InputAction _moveAction;
     private InputAction _jumpAction;
     private bool _jumpQueued = false;
-    [SerializeField] private bool _dashQueued = false;    
+    private bool _justLanded = false;
+
+    private bool _dashQueued = false;    
     
     private float coyoteTimer = 0f;
 
@@ -123,9 +125,11 @@ public class Player_Controller : MonoBehaviour
                 _animator.ResetTrigger("Run");
 
                 _animator.SetTrigger("Jump");
+                Player.Singleton.SoundController.PlayMovementSoundPrimary(SoundID_e.Jump, false); 
                 yield return new WaitForSecondsRealtime(0.125f);
                 yield return new WaitUntil(() => _isGrounded || Mathf.Abs(_rb.linearVelocityX) > 16.2);
                 _animator.ResetTrigger("Jump");
+
 
             }
 
@@ -135,6 +139,7 @@ public class Player_Controller : MonoBehaviour
 
                 _animator.SetTrigger("Fall");
                 yield return new WaitUntil(() => _isGrounded || Mathf.Abs(_rb.linearVelocityX) > 16.2);
+
                 _animator.ResetTrigger("Fall");
 
             }
@@ -144,23 +149,28 @@ public class Player_Controller : MonoBehaviour
                 _animator.ResetTrigger("Idle");
                 _animator.SetTrigger("Run");
 
+                Player.Singleton.SoundController.PlayMovementSoundPrimary(SoundID_e.Run, true, false);
+
                 yield return new WaitUntil(() => Mathf.Abs(_rb.linearVelocityX) <= .2 || Mathf.Abs(_rb.linearVelocityY) > .2f || Mathf.Abs(_rb.linearVelocityX) > 16.2);
+                Player.Singleton.SoundController.StopMovementSoundPrimary();
                 _animator.ResetTrigger("Run");
+
 
             }
 
-            if (Mathf.Abs(_rb.linearVelocityX) > 6.2)
+            if (Mathf.Abs(_rb.linearVelocityX) > 16.2)
             {
                 _animator.ResetTrigger("Idle");
                 _animator.SetTrigger("IsAbility");
 
+                Player.Singleton.SoundController.PlayMovementSoundPrimary(SoundID_e.Dash, false);
                 yield return new WaitForSecondsRealtime(0.125f);
                 yield return new WaitUntil(() => Mathf.Abs(_rb.linearVelocityX) <= 16.2);
                 _animator.ResetTrigger("IsAbility");
             }
 
-
             _animator.SetTrigger("Idle"); 
+            
             
             yield return new WaitForEndOfFrame(); 
         }
@@ -220,6 +230,7 @@ public class Player_Controller : MonoBehaviour
             Debug.Log($"Applying impulse force {force} to player");
             _rb.AddForce(Vector2.right * force, ForceMode2D.Impulse);
 
+
             _dashQueued = false;
         }
 
@@ -256,6 +267,16 @@ public class Player_Controller : MonoBehaviour
 
         RaycastHit2D boxResult = Physics2D.BoxCast(gameObject.transform.position, _rectExtents, 0f, Vector2.down * _gravDirection, rcDist, groundMask);
         _isGrounded = (boxResult.collider != null);
+
+        if(_isGrounded && !_justLanded)
+        {
+            Player.Singleton.SoundController.PlayMovementSoundSecondary(SoundID_e.Land, false);
+            _justLanded = true;
+        }
+        else if (!_isGrounded)
+        {
+            _justLanded = false;
+        }
     }
 
     private void ApplyCustomGravity() //Heres the shitty custom gravity function I made, it does pretty much what it should,
