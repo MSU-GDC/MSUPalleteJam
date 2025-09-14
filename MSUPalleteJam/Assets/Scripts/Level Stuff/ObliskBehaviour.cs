@@ -16,6 +16,9 @@ public class ObliskBehaviour : MonoBehaviour
 
     [SerializeField] private float _shotTimeSeconds = 0.3f;
 
+    [SerializeField] private AudioSource _chargeAudioSource;
+    [SerializeField] private AudioSource _fireAudioSource; 
+
 
 
 
@@ -34,6 +37,8 @@ public class ObliskBehaviour : MonoBehaviour
 
             _animator.SetBool("IsFire", true);
 
+            _chargeAudioSource.Play();
+
             yield return new WaitForSecondsRealtime(_shotTimeSeconds);
 
             Vector2 playerPos = (Vector2)Player.Singleton.transform.position;
@@ -48,6 +53,10 @@ public class ObliskBehaviour : MonoBehaviour
 
 
             GameObject.Instantiate(_projectile, projSpawnPos, Quaternion.Euler(0f, 0f, angle));
+
+            _fireAudioSource.Play();
+
+            
 
             _animator.SetBool("IsFire", false);
 

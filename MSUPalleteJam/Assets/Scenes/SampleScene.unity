@@ -1722,10 +1722,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Oblisk
       objectReference: {fileID: 0}
-    - target: {fileID: 613361820542504653, guid: 3cdd99204c8b6faa78cd84cbae4fe6e8, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3564004556411350231, guid: 3cdd99204c8b6faa78cd84cbae4fe6e8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.04
@@ -2190,7 +2186,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1365032067946305281, guid: 4b5269989f4a23d8ea58105a2b4f50d4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
