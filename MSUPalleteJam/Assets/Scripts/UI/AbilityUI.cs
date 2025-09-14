@@ -29,7 +29,7 @@ public class AbilityUI : MonoBehaviour
 
     private void Start()
     {
-        //_abilityIndicator.SetActive(false);
+        _abilityIndicator.SetActive(false);
 
         _uiVariationLookup = new Dictionary<AbilityID_e, GameObject>();
         _uiIconLookup = new Dictionary<AbilityID_e, GameObject>();
