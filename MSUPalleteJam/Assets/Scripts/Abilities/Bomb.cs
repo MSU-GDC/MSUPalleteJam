@@ -5,7 +5,9 @@ public class Bomb : MonoBehaviour
     [SerializeField] private float _explosionTime;
     [SerializeField] private float _explosionRadius;
     [SerializeField] private LayerMask _targets;
-    [SerializeField] private LayerMask _ignorables; 
+    [SerializeField] private LayerMask _ignorables;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private SpriteRenderer _spriteRenderer; 
 
 
     private void Awake()
@@ -18,7 +20,11 @@ public class Bomb : MonoBehaviour
 
     private void Explode()
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll((Vector2)transform.position, _explosionRadius, _targets); 
+        Collider2D[] hits = Physics2D.OverlapCircleAll((Vector2)transform.position, _explosionRadius, _targets);
+
+        _spriteRenderer.enabled = false;
+
+        _audioSource.Play(); 
 
         foreach(Collider2D hit in hits)
         {
@@ -42,6 +48,13 @@ public class Bomb : MonoBehaviour
                 }
             }
         }
+
+        Invoke(nameof(Cleanup), 0.75f); 
+    }
+
+
+    private void Cleanup()
+    {
         Destroy(gameObject);
     }
 

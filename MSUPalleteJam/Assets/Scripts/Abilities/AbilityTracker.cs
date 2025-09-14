@@ -124,7 +124,6 @@ public class AbilityTracker : MonoBehaviour
 
         Debug.Log($"selected ability {value}");
 
-
         switch (value)
         {
             case 1:
@@ -296,6 +295,7 @@ public class AbilityTracker : MonoBehaviour
 
 
         _equippedAbility = _abilityDatabase[abilityID];
+        Player.Singleton.SoundController.PlayAbilitySound(SoundID_e.AbilitySwitch, false);
 
         Debug.Log($"Equipped Ability {abilityID}");
 

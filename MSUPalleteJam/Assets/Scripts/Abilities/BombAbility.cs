@@ -22,6 +22,8 @@ public class BombAbility : Ability
             GameObject.Instantiate(_bombPrefab, Player.Singleton.transform.position, Quaternion.identity);
             _isCooldown = true;
 
+            Player.Singleton.SoundController.PlayAbilitySound(SoundID_e.BombPlace,false,true); 
+
             Invoke(nameof(EndCooldown), _data.CooldownTimeSeconds);
         }
 

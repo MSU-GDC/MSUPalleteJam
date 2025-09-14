@@ -5,6 +5,7 @@ public class PlayerSoundController : MonoBehaviour
 {
     [SerializeField] private AudioSource _movementAudioSourcePrimary;
     [SerializeField] private AudioSource _movementAudioSourceSecondary;
+    [SerializeField] private AudioSource _abilityAudioSorce; 
 
     [SerializeField] private List<AudioClip> _clips;
     [SerializeField] private List<SoundID_e> _associatedIds;
@@ -14,6 +15,7 @@ public class PlayerSoundController : MonoBehaviour
 
     private SoundID_e _cSoundIdPrimary;
     private SoundID_e _cSoundIdSecondary;
+    private SoundID_e _cSoundIdAbility; 
 
     private void Awake()
     {
@@ -56,6 +58,22 @@ public class PlayerSoundController : MonoBehaviour
         }
     }
 
+    public void PlayAbilitySound(SoundID_e soundID, bool loop, bool repeat = true)
+    {
+        if (repeat == false && _cSoundIdAbility == soundID && loop == _abilityAudioSorce.loop) return;
+        else
+        {
+            _abilityAudioSorce.Stop();
+            _abilityAudioSorce.clip = _soundDatabase[soundID];
+            _abilityAudioSorce.loop = loop;
+            _abilityAudioSorce.Play();
+
+            _cSoundIdAbility = soundID;
+        }
+    }
+
+
+
 
     public void StopMovementSoundPrimary()
     {
@@ -67,6 +85,11 @@ public class PlayerSoundController : MonoBehaviour
         _movementAudioSourceSecondary.Stop();
         _cSoundIdSecondary = SoundID_e.None;
     }
+    public void StopAbilitySound()
+    {
+        _abilityAudioSorce.Stop();
+        _cSoundIdAbility = SoundID_e.None;
+    }
 
 }
 public enum SoundID_e
@@ -75,5 +98,11 @@ public enum SoundID_e
     Run = 1,
     Jump = 2,
     Land = 3,
-    Dash = 4
+    Dash = 4,
+    RockThrow,
+    RockCharge,
+    BombPlace,
+    AbilitySwitch,
+    GravUp,
+    GravDown
 }

@@ -10,8 +10,9 @@ public class GravFlipAbility : Ability
     {
         if (AbilityTracker.Singleton.IsAbilityUnlocked(_abilityData.AbilityID)){
             Player.Singleton.Controller.SetGravityDirection(-1);
+            //Player.Singleton.SoundController.PlayAbilitySound(SoundID_e.GravUp, false, false);
 
-        } 
+        }
     }
 
     public override void Cancel()
@@ -19,6 +20,7 @@ public class GravFlipAbility : Ability
         if (AbilityTracker.Singleton.IsAbilityUnlocked(_abilityData.AbilityID))
         {
             Player.Singleton.Controller.SetGravityDirection(1);
+           // Player.Singleton.SoundController.PlayAbilitySound(SoundID_e.GravDown,false,false);
         }
     }
 

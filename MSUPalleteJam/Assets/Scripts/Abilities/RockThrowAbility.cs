@@ -59,7 +59,7 @@ public class RockThrowAbility : Ability
 
 
 
-
+        Player.Singleton.SoundController.PlayAbilitySound(SoundID_e.RockThrow,false);
     }
 
     public override void Execute()
@@ -76,6 +76,8 @@ public class RockThrowAbility : Ability
         _cProjForce = _baseProjectileForce + _cChargeTime * (_maxProjectileForce - _baseProjectileForce) / _chargeTimeSeconds;
 
         _cProjForce = Mathf.Clamp(_cProjForce, _baseProjectileForce, _maxProjectileForce);
+
+        Player.Singleton.SoundController.PlayAbilitySound(SoundID_e.RockCharge, false, false); 
 
 
 
