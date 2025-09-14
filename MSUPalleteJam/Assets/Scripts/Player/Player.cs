@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
@@ -14,7 +15,12 @@ public class Player : MonoBehaviour
 
     public Transform ProjectileSpawnPt;
 
-    public Rigidbody2D PlayerRigidbody; 
+    public Rigidbody2D PlayerRigidbody;
+
+
+    public Transform RespawnPT;
+
+    public UnityEvent OnDie;
 
 
 
@@ -28,7 +34,13 @@ public class Player : MonoBehaviour
             gameObject.SetActive(false);
         }
         else Singleton = this;
+    }
 
 
+    public void Die()
+    {
+        transform.position = RespawnPT.position;
+
+        OnDie.Invoke();
     }
 }

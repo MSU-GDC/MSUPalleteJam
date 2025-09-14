@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ObliskLaser : MonoBehaviour
@@ -13,6 +14,14 @@ public class ObliskLaser : MonoBehaviour
 
         Invoke(nameof(Cleanup), _lifeTime);
 
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            Player.Singleton.Die(); 
+        }
     }
 
 
