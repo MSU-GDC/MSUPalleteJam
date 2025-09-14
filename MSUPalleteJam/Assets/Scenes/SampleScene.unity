@@ -1863,6 +1863,10 @@ PrefabInstance:
       propertyPath: _preUnlockedAbilities.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3803741005385531600, guid: 7c350bc7f6d221543a426d76b9177de3, type: 3}
+      propertyPath: '_clips.Array.data[4]'
+      value: 
+      objectReference: {fileID: 8300000, guid: aad030e40cee148ba8e67187aae03a0e, type: 3}
     - target: {fileID: 6937365912721763679, guid: 7c350bc7f6d221543a426d76b9177de3, type: 3}
       propertyPath: m_Name
       value: Player

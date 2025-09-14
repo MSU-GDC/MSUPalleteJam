@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 
     [Header("Player Scripts")]
     public Player_Controller Controller;
+    public PlayerSoundController SoundController;
 
     [Header("Global References")]
     public Camera MainCamera;

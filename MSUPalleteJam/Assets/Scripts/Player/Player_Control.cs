@@ -198,7 +198,7 @@ public class Player_Controller : MonoBehaviour
         {
             //dash distance is directly tied to movespeed, it also has no accel or deaccel as it is impulse only - JF
 
-            float desiredDir = _movementDirection.x != 0 ? _movementDirection.x : 1f;
+            float desiredDir = _movementDirection.x != 0 ? _movementDirection.x : _lastMovementDir;
 
             float desiredSpeed = desiredDir * _moveSpeed * _dashForceMult; 
             float diff = desiredSpeed - _rb.linearVelocity.x;
