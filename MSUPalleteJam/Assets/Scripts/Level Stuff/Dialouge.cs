@@ -13,6 +13,8 @@ public class Dialouge : MonoBehaviour
     [SerializeField] private List<DialougeLine_t> _lines;
 
     [SerializeField] private UnityEvent _onDialougeConclude;
+
+    [SerializeField] private AudioSource _blipSource;
     [SerializeField] private bool _invokeOnAwake;
 
 
@@ -39,6 +41,8 @@ public class Dialouge : MonoBehaviour
                 cString += line.Line[i];
 
                 _outputText.text = cString;
+
+                _blipSource.Play();
 
                 yield return new WaitForSecondsRealtime(_typewriterTypeSpeed); 
 
