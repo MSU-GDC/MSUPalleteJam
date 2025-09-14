@@ -119,7 +119,7 @@ public class Player_Controller : MonoBehaviour
     {
         while (true)
         {
-            if (_rb.linearVelocityY > .2 || _jumpQueued)
+            if ( (_gravDirection >= 1 && _rb.linearVelocityY > .2 ) || (_gravDirection < 1 && _rb.linearVelocityY < -0.2) || _jumpQueued)
             {
                 _animator.ResetTrigger("Idle"); 
                 _animator.ResetTrigger("Run");
