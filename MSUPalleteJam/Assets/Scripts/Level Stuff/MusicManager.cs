@@ -11,6 +11,7 @@ public class MusicManager : MonoBehaviour
     {
         _source.clip = _tracks[index];
         _source.Play();
+        _source.loop = true; 
     }
 
     public void CancelCurrentTrack()

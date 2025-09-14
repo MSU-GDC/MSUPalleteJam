@@ -862,7 +862,7 @@ MonoBehaviour:
   rcDist: 0.3
   groundMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 264
   coyoteTime: 0.1
   _movementDirection: {x: 0, y: 0}
   _isJump: 0
