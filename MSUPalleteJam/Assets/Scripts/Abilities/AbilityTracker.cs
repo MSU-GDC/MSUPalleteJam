@@ -51,6 +51,8 @@ public class AbilityTracker : MonoBehaviour
     private InputAction _useAbilityAction;
     private InputAction _selectAbilityAction;
 
+    private AbilityID_e _lastUnlockedAbility; 
+
     private bool _abilityToggle;  
 
     private void Awake()
@@ -129,11 +131,11 @@ public class AbilityTracker : MonoBehaviour
 
                 EquipAbility(AbilityID_e.DASH);
                 break;
-            case 2:
+            case 3:
 
                 EquipAbility(AbilityID_e.WALLBLAST);
                 break;
-            case 3:
+            case 2:
 
                 EquipAbility(AbilityID_e.ROCKTHROW);
                 break;
@@ -245,6 +247,8 @@ public class AbilityTracker : MonoBehaviour
 
         _unlockedAbilities = (uint)abilityID | _unlockedAbilities;
 
+        _lastUnlockedAbility = abilityID; 
+
         if(AbilityAddedCallback != null) AbilityAddedCallback.Invoke(); 
 
         if (_equippedAbility == null) EquipAbility(abilityID);
@@ -310,6 +314,11 @@ public class AbilityTracker : MonoBehaviour
     public Ability CurrentAbility()
     {
         return _equippedAbility; 
+    }
+
+    public AbilityID_e GetLastUnlockedAbility()
+    {
+        return _lastUnlockedAbility;
     }
 }
 
