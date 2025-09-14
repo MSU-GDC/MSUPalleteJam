@@ -903,7 +903,7 @@ MonoBehaviour:
   - {fileID: 198915466036610093}
   - {fileID: 2972854588488500658}
   _animator: {fileID: 129663633903481293}
-  _preUnlockedAbilities: 00100000000100001000000001000000
+  _preUnlockedAbilities: 
   _equippedAbility: {fileID: 0}
 --- !u!114 &3803741005385531600
 MonoBehaviour:
