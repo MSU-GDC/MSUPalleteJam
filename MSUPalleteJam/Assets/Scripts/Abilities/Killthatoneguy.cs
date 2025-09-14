@@ -59,7 +59,7 @@ public class Killthatoneguy : MonoBehaviour
 
     public void SceneTransiton()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(2);
         //Destroy(gameObject);
 
     }
