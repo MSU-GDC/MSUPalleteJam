@@ -65,6 +65,7 @@ public class AbilityTracker : MonoBehaviour
         }
         else Singleton = this;
 
+        print($"Ability Ids {(int)AbilityID_e.ROCKTHROW}");
 
         _useAbilityAction = _controls.FindActionMap("Player").FindAction("UseAbility");
 

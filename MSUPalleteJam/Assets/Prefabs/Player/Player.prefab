@@ -315,7 +315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _abilityData:
-    AbilityID: 4096
+    AbilityID: 8
     AssociatedColor: {r: 0.45490196, g: 0.6392157, b: 0.20784314, a: 1}
     AbilityName: Rock Throw
     CooldownTimeSeconds: 0.5
@@ -558,7 +558,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data:
-    AbilityID: 256
+    AbilityID: 4
     AssociatedColor: {r: 0.7764706, g: 0.3137255, b: 0.3529412, a: 1}
     AbilityName: Wallblast
     CooldownTimeSeconds: 1.5
@@ -610,7 +610,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _abilityData:
-    AbilityID: 16
+    AbilityID: 2
     AssociatedColor: {r: 0.43137255, g: 0.72156864, b: 0.65882355, a: 1}
     AbilityName: Gravity Flip
     CooldownTimeSeconds: 0.125
