@@ -47,14 +47,15 @@ public class Killthatoneguy : MonoBehaviour
     private void Cleanup()
     {
         _transitionScreen[0].SetActive(true);
-        Destroy(gameObject);
         Invoke("SceneTransition", 1.0f);
+
+        Destroy(gameObject);
 
     }
 
     public void SceneTransiton()
     {
-               UnityEngine.SceneManagement.SceneManager.LoadScene(nextScene);
+               UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
 
 
