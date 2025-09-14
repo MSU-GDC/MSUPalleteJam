@@ -10,6 +10,10 @@ public class Killthatoneguy : MonoBehaviour
 
     [SerializeField] private GameObject[] _explosionstuff; 
 
+    [SerializeField] private string nextScene;
+
+    [SerializeField] private GameObject[] _transitionScreen;
+
 
     public void SubtractLife()
     {
@@ -42,8 +46,15 @@ public class Killthatoneguy : MonoBehaviour
 
     private void Cleanup()
     {
+        _transitionScreen[0].SetActive(true);
         Destroy(gameObject);
+        Invoke("SceneTransition", 1.0f);
 
+    }
+
+    public void SceneTransiton()
+    {
+               UnityEngine.SceneManagement.SceneManager.LoadScene(nextScene);
     }
 
 
