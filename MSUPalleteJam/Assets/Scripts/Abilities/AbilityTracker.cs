@@ -106,7 +106,7 @@ public class AbilityTracker : MonoBehaviour
             _abilityDatabase.Add(ability.GetAbilityData().AbilityID, ability);
         }
 
-#if UNITY_EDITOR
+
         if (_preUnlockedAbilities == null || _preUnlockedAbilities.Count == 0) return;
         foreach (AbilityID_e ability in _preUnlockedAbilities)
         {
@@ -114,7 +114,6 @@ public class AbilityTracker : MonoBehaviour
             UnlockAbility(ability);
         }
 
-#endif // UNITY_EDITOR
     }
 
 
