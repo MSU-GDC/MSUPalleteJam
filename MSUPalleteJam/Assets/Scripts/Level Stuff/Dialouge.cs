@@ -12,13 +12,20 @@ public class Dialouge : MonoBehaviour
 
     [SerializeField] private List<DialougeLine_t> _lines;
 
-    [SerializeField] private UnityEvent _onDialougeConclude; 
+    [SerializeField] private UnityEvent _onDialougeConclude;
+    [SerializeField] private bool _invokeOnAwake;
 
-    
+
+    void Awake()
+    {
+        if (_invokeOnAwake) BeginDialouge();
+    }
+
+
 
     public void BeginDialouge()
     {
-        StartCoroutine(DialougeRoutine()); 
+        StartCoroutine(DialougeRoutine());
     }
 
     private IEnumerator DialougeRoutine()
