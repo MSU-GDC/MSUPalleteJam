@@ -1,0 +1,51 @@
+using System.Collections;
+using UnityEngine;
+using UnityEngine.Events;
+
+public class Killthatoneguy : MonoBehaviour
+{
+    private int _hp = 3;
+
+    [SerializeField] private UnityEvent _onThatGuyDying;
+
+    [SerializeField] private GameObject[] _explosionstuff; 
+
+
+    public void SubtractLife()
+    {
+        _hp -= 1;
+
+        if (_hp <= 0)
+        {
+            KillThatGuy();
+        }
+    }
+
+    public void KillThatGuy()
+    {
+        _onThatGuyDying.Invoke();
+
+        StartCoroutine(CoolSFX()); 
+        Invoke(nameof(Cleanup), 3.0f);
+    }
+
+    private IEnumerator CoolSFX()
+    {
+        foreach (GameObject gameObject in _explosionstuff)
+        {
+            gameObject.SetActive(true);
+            yield return new WaitForSeconds(.1f);
+        }
+
+    }
+
+
+    private void Cleanup()
+    {
+        Destroy(gameObject);
+
+    }
+
+
+
+}
