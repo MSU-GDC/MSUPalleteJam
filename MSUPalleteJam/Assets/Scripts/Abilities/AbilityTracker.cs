@@ -314,11 +314,11 @@ public class AbilityTracker : MonoBehaviour
 
 public enum AbilityID_e
 {
-    NOID = 0x0000_0000,
-    DASH = 0x0000_0001,
-    GRAVFLIP = 0x0000_0010,
-    WALLBLAST = 0x0000_0100,
-    ROCKTHROW = 0x0000_1000
+    NOID = 0b0000_0000,
+    DASH = 0b0000_0001,
+    GRAVFLIP = 0b0000_0010,
+    WALLBLAST = 0b0000_0100,
+    ROCKTHROW = 0b0000_1000
 }
 
 

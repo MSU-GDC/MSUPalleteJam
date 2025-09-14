@@ -244,7 +244,7 @@ public class Player_Controller : MonoBehaviour
         //Here's the BoxCast ground check, it works pretty well so far, but could totally be tweaked. -DC
 
         RaycastHit2D boxResult = Physics2D.BoxCast(gameObject.transform.position, _rectExtents, 0f, Vector2.down * _gravDirection, rcDist, groundMask);
-        _isGrounded = boxResult.collider != null;
+        _isGrounded = (boxResult.collider != null);
     }
 
     private void ApplyCustomGravity() //Heres the shitty custom gravity function I made, it does pretty much what it should,
