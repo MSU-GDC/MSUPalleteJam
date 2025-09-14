@@ -25,11 +25,16 @@ public class Killthatoneguy : MonoBehaviour
         }
     }
 
+    public void HealToFull()
+    {
+        _hp = 3; 
+    }
+
     public void KillThatGuy()
     {
         _onThatGuyDying.Invoke();
 
-        StartCoroutine(CoolSFX()); 
+        StartCoroutine(CoolSFX());
         Invoke(nameof(Cleanup), 3.0f);
     }
 
